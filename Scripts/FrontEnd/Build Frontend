@@ -1,0 +1,6 @@
+1. Додати Jenkins до sudo usermod -aG adm jenkins 
+2. /etc/sudoers  Додати %adm ALL=(ALL) NOPASSWD:ALL
+3. В файлі FrontEnd/my-app/src/api/axios.js змініти http://localhost:5034 на свою зовнішню IP наприклад http://10.20.24.200:5034
+4. sudo docker build -t macnaer/frontend .
+5. sudo docker run -d --restart=always -p 80:80 macnaer/frontend
+6. На сайті залогінитись використовуючи логін admin@gmail.com і пароль 123456

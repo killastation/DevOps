@@ -1,0 +1,8 @@
+/Terraform/ec2/.terraform
+/Terraform/ec2/.terraform.lock.hcl
+/Terraform/ec2/variables.tf
+/Terraform/ec2/terraform.tfstate.backup
+/Diploma/1. Terraform/.terraform
+/Diploma/1. Terraform/.terraform.lock.hcl
+/Diploma/1. Terraform/terraform.tfstate.backup
+/Diploma/1. Terraform/variables.tf

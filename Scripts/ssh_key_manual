@@ -1,0 +1,12 @@
+Server configuration:
+1. sudo vim /etc/ssh/sshd_config
+Зробити наступні зміни.
+PubkeyAuthentication yes
+PasswordAuthentication no
+2. sudo systemctl restart sshd
+
+Client configuration
+1. ssh-keygen -t rsa -b 4096
+2. ssh-copy-id -i ~/.ssh/id_rsa master@server_ip
+3. Скопіювати публічний ключ в .ssh/authorized_keys
+4. Перевірка: ssh server_ip

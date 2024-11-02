@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    volumes:
+      - /opt/mssql:/var/opt/mssql
+
+    restart: always
+
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Qwerty-1
+
+    ports:
+      - 1433:1433
+
+  backend:
+    image: macnaer/backend
+    ports:
+      - 5034:5034
+    restart: always
+    depends_on:
+      - db
+
+  frontend:
+    image: macnaer/frontend
+    ports:
+      - 80:80
+    restart: always

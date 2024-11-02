@@ -1,0 +1,10 @@
+1. git clone https://github.com/niki228041/Amazon-Clone.git
+2. BackEnd/Amazon-clone/ShopApi/appsettings.json
+В строці  "DefaultConnection": "Server=20.240.61.200,1433;Database=asdd;User Id=sa;Password=Qwerty-1;" замінити IP адресу серверу
+3. В Dockerfile змінити в строці RUN dotnet tool install -g dotnet-ef змінити на 
+RUN dotnet tool install -g dotnet-ef  --version 6.0.6
+4. sudo docker build -t macnaer/backend .
+5. sudo docker run -d --restart=always -p 5034:5034 macnaer/backend
+
+
+  
