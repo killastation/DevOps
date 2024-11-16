@@ -16,7 +16,7 @@ resource "aws_instance" "EC2-Instance" {
   // Create main disk
   ebs_block_device {
     device_name = "/dev/sda1"
-    volume_size = 15
+    volume_size = 30
     tags = {
       "name" = "root disk"
     }
