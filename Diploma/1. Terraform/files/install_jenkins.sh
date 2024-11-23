@@ -1,18 +1,26 @@
 #! /bin/bash
 
-sudo apt -y update
-sudo apt install -y openjdk-17-jre
-sudo apt install -y openjdk-17-jdk
+sudo apt update
+sudo apt install -y wget gnupg2 software-properties-common curl jq
 
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]  https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo add-apt-repository -y ppa:openjdk-r/ppa
+sudo apt update
 
-sudo apt -y update
+latest_lts_java_version=$(curl -s https://api.adoptium.net/v3/info/available_releases | jq -r '.most_recent_lts')
+echo "Актуальна версія Java LTS: $latest_lts_java_version"
+
+sudo apt install -y openjdk-$latest_lts_java_version-jdk
+
+jenkins_key_page=$(curl -s https://pkg.jenkins.io/debian-stable/)
+jenkins_key_url=$(echo "$jenkins_key_page" | grep -oP 'https://[^"]+jenkins.io-\d{4}.key' | head -1)
+
+curl -fsSL $jenkins_key_url | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
 sudo apt install -y jenkins
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-
-
 
 
 sudo apt-get -y update
